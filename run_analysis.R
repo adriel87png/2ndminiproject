@@ -32,11 +32,11 @@ xTest <- read.table("UCI HAR Dataset/test/X_test.txt")
 
 #from main folder
 activityLabels <- read.table("UCI HAR Dataset/activity_labels.txt")[2]
-head(activityLabels)
+#head(activityLabels)
 
 #only selecting to the second column for the naming convention
 features <- read.table("UCI HAR Dataset/features.txt")[,2]
-head(features)
+#head(features)
 
 #y contains activity and x contains features
 #bind them together by row
@@ -56,16 +56,16 @@ combinedData <- cbind(subject, y, x)
 
 #head(combinedData)
 #ncol(combinedData)
-ncol(combinedData)
+#ncol(combinedData)
 
 #.b.)  Extracts only the measurements on the mean and 
 #standard deviation for each measurement
 
 #Get columns with standard deviation and mean using grepl
 combinedDataSD <- combinedData[,grepl("std()", colnames(combinedData), ignore.case = TRUE)]
-ncol(combinedDataSD) #33
+#ncol(combinedDataSD) #33
 combinedDataMEAN <- combinedData[,grepl("mean()", colnames(combinedData), ignore.case = TRUE)]
-ncol(combinedDataMEAN) #53
+#ncol(combinedDataMEAN) #53
 
 #combine both of the findings with cbind
 combinedDataSDMEAN <- cbind(combinedDataSD, combinedDataMEAN)
@@ -80,6 +80,7 @@ combinedData2 <- cbind(subject, y, combinedDataSDMEAN)
 #.c.) Uses descriptive activity names 
 #to name the activities in the dataset
 
+#activity labels are stored in a vector to properly distribute them later
 activityNameVector <- activityLabels$V2
 
 #set activity names using this loop
