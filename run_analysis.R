@@ -39,6 +39,7 @@ features <- read.table("UCI HAR Dataset/features.txt")[,2]
 head(features)
 
 #y contains activity and x contains features
+#bind them together by row
 subject <- rbind(subjectTrain, subjectTest)
 y <- rbind(yTrain, yTest)
 x <- rbind(xTrain, xTest)
@@ -81,6 +82,9 @@ combinedData2 <- cbind(subject, y, combinedDataSDMEAN)
 
 activityNameVector <- activityLabels$V2
 
+#set activity names using this loop
+#set to up to 6 since there are only 6
+#this changes all the names for activities
 for (i in 1:6){
   combinedData2$Activity[combinedData2$Activity == i] <- activityNameVector[i]
 }
@@ -92,6 +96,9 @@ for (i in 1:6){
 #d.)
 #Names for the variables are based from features_info.txt
 #gsub to change substrings
+#this is to change the column names
+#This is run in chornological order to avoid any weird replacements
+#i.e. Doubling of changes
 #DONT RUN EACH OF THESE LINES MORE THAN ONCE
 names(combinedData2) <- gsub("-X", "Axis=X", names(combinedData2))
 names(combinedData2) <- gsub("-Y", "Axis=Y", names(combinedData2))
@@ -112,6 +119,6 @@ names(combinedData2) <- gsub("gravity", "Gravity", names(combinedData2))
 names(combinedData2) <- gsub("mean", "Mean", names(combinedData2))
 
 
-#e.) From the data set in step 4, create a second, i
-#ndependent tidy data set with the average of each variable
+#e.) From the data set in step 4, create a second, 
+#independent tidy data set with the average of each variable
 #for each activity and each subject.
