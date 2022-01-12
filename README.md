@@ -45,4 +45,6 @@ a.)Merges the training and the test sets to create one data set
   
  #.e.)  From the data set in step 4, create a second, independent tidy data set with the average of each variable for each activity and each subject.
  
-  To be made...
+  Using the pipe operator, we group the dataset using group_by with 'subject' and 'activity' as paramerters, and got the mean
+  for each variable using summarise_all
+  The data is exported using write.table with ';' as the separator. It is named tidyData.txt
