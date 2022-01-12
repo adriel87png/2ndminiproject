@@ -1,4 +1,3 @@
-library(data.table)
 library(dplyr)
 library(stringr)
 #1
@@ -123,3 +122,11 @@ names(combinedData2) <- gsub("mean", "Mean", names(combinedData2))
 #e.) From the data set in step 4, create a second, 
 #independent tidy data set with the average of each variable
 #for each activity and each subject.
+
+#using the pipe operator, we group the combinedData2 using group_by 
+#with subject and activity as paramerters, and got the mean
+#for each variable using summarise_all
+tidyData <- combinedData2 %>% group_by(Subject, Activity) %>% summarise_all(mean) 
+  
+write.table(tidyData, file="tidyData.txt", sep=";", row.names=FALSE)
+#tidyData
