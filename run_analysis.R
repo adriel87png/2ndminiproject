@@ -127,6 +127,8 @@ names(combinedData2) <- gsub("mean", "Mean", names(combinedData2))
 #with subject and activity as paramerters, and got the mean
 #for each variable using summarise_all
 tidyData <- combinedData2 %>% group_by(Subject, Activity) %>% summarise_all(mean) 
-  
+
+#writes the data in a textfile named tidyData, with no rownames
+#and with the separator ; like from its source
 write.table(tidyData, file="tidyData.txt", sep=";", row.names=FALSE)
 #tidyData
